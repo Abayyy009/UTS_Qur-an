@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koleksi Surah</title>
-    <!-- Bootstrap CSS via CDN -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Animate.css untuk animasi -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <!-- CSS Kustom untuk animasi tambahan -->
     <style>
-        /* Animasi saat tombol di-hover */
         .btn-primary,
         .btn-success {
             transition: transform 0.3s ease;
@@ -22,7 +18,6 @@
             transform: scale(1.1);
         }
 
-        /* Animasi card saat masuk */
         .card {
             opacity: 0;
             transform: translateY(30px);
@@ -33,7 +28,6 @@
             animation-delay: 0.1s;
         }
 
-        /* Fade-in effect for the card */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -41,12 +35,12 @@
             }
         }
 
-        /* Untuk animasi spinner loading */
+
         .loading-spinner {
             display: none;
         }
 
-        /* Efek muncul modal dengan animasi */
+
         .modal.fade .modal-dialog {
             transform: translateY(-50%);
             animation: modalFadeIn 0.5s forwards;
@@ -66,30 +60,27 @@
 
         .ayat-arab {
             font-size: 1.5rem;
-            /* atau sesuaikan ukurannya */
             text-align: right;
-            /* rata kanan untuk teks Arab */
             direction: rtl;
-            /* arah teks kanan ke kiri */
         }
     </style>
 </head>
 
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Koleksi Surah</h1>
-        <br>
-        <br>
-        <div class="loading-spinner text-center">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
+        <h1 class="text-center">Daftar Surah - Al-Qur'an</h1>
+        <h6 class="text-center">By. M Akbar Firdaus</h1>
+            <br>
+            <br>
+            <div class="loading-spinner text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
-        </div>
-        <div class="row card-list"></div>
+            <div class="row card-list"></div>
     </div>
 
 
-    <!-- Modal untuk Menampilkan Detail Surah -->
     <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -105,25 +96,21 @@
                         <h6>Ayat Al-Qur'an</h6>
                         <ul id="ayatList" class="list-unstyled"></ul>
                     </div>
-                    <!-- Konten untuk detail surah -->
                     <div id="surahDetails" class="d-block">
                         <h5 id="surahName" class="mt-3"></h5>
                         <p><strong>Arti:</strong> <span id="surahMeaning"></span></p>
                         <p><strong>Deskripsi:</strong> <span id="surahDescription"></span></p>
                     </div>
-                    <!-- Konten untuk ayat surah -->
 
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- jQuery dan Bootstrap JS via CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Fungsi untuk mengambil daftar surah
         function fetchSurahList() {
             $('.loading-spinner').show();
 
@@ -206,13 +193,12 @@
                         `;
                     }).join("");
 
-                    // Menyembunyikan detail surah dan menampilkan ayat
 
                     $('#surahAyat').removeClass('d-none');
                     $('#ayatList').html(ayatText);
 
                     $('#detailsModalLabel').text(`Baca Surat: ${surah.namaLatin}`);
-                    $('#detailsModal').modal('show');  // Tampilkan modal dengan ayat-ayat surat
+                    $('#detailsModal').modal('show');
                 },
                 error: function (xhr, status, error) {
                     console.error("Error fetching Surah data: ", error);
@@ -220,7 +206,6 @@
             });
         }
 
-        // Ketika dokumen siap, ambil daftar surah
         $(document).ready(function () {
             fetchSurahList();
         });
